@@ -8,6 +8,8 @@ namespace Octo {
     {
     private:
         SDL_Window *window_ = NULL;
+        int screenH_, screenW_;
+        void fillSurface();
         int createWindow();
     public:
         Application(/* args */);

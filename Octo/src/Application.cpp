@@ -4,6 +4,7 @@ namespace Octo
 {
     Application::Application(/* args */)
     {
+       
     }
 
     Application::~Application()
@@ -18,8 +19,28 @@ namespace Octo
             SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
             return 1;
         }
+
+        this->screenW_ = 650;
+        this->screenH_ = 480;    
+
+        createWindow();
         
-        return createWindow();
+        return 0;
+    }
+
+    void Application::fillSurface()
+    {
+        /* Declaring the surface. */
+        SDL_Surface *s;
+
+        s = SDL_GetWindowSurface( window_ );
+       
+
+        /* Filling the surface with red color. */
+        SDL_FillRect(s, NULL, SDL_MapRGB(s->format, 255, 0, 0));
+
+        //Update the surface
+        SDL_UpdateWindowSurface( window_ );
     }
 
     int Application::createWindow()
@@ -29,8 +50,8 @@ namespace Octo
             "An SDL2 window",        // window title
             SDL_WINDOWPOS_UNDEFINED, // initial x position
             SDL_WINDOWPOS_UNDEFINED, // initial y position
-            640,                     // width, in pixels
-            480,                     // height, in pixels
+            this->screenW_,                     // width, in pixels
+            this->screenH_,                     // height, in pixels
             SDL_WINDOW_OPENGL        // flags - see below
         );
 
@@ -42,6 +63,8 @@ namespace Octo
             return 1;
         }
 
+        fillSurface();
+
         // The window is open: could enter program loop here (see SDL_PollEvent())
 
         SDL_Delay(3000); // Pause execution for 3000 milliseconds, for example
@@ -51,6 +74,5 @@ namespace Octo
 
         return 0;
     }
-    
 
 } // namespace Octo
