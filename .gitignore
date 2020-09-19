@@ -1,1 +1,5 @@
+# visual studio code
 .vscode/
+
+# cmake build folder
+build/
