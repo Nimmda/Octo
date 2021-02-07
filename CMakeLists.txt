@@ -14,6 +14,7 @@ set(
 
 # Add all files from a src folder
 file(GLOB SOURCES "src/*.cpp")
+file(GLOB HEADER "src/*.hpp")
 
 # Add vulkan dependencies using enviornment variable from LunarG SDK Setup
 include_directories("$ENV{VULKAN_SDK}/include")
@@ -35,10 +36,10 @@ set(
 )
 
 # Set C++11
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 17)
 
 # Setup binary output
-add_executable(${BIN_NAME} ${SOURCES})
+add_executable(${BIN_NAME} ${SOURCES} ${HEADER})
 
 # Link dependencies
 target_link_libraries(${BIN_NAME} glfw)
