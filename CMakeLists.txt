@@ -12,6 +12,8 @@ set(
 	"vkdemo"
 )
 
+
+
 # Add all files from a src folder
 file(GLOB SOURCES "src/*.cpp")
 file(GLOB HEADER "src/*.hpp")
@@ -44,3 +46,9 @@ add_executable(${BIN_NAME} ${SOURCES} ${HEADER})
 # Link dependencies
 target_link_libraries(${BIN_NAME} glfw)
 target_link_libraries(${BIN_NAME} vulkan)
+
+# build shaders
+add_custom_command(TARGET ${BIN_NAME}
+        POST_BUILD
+        COMMAND /bin/sh ${PROJECT_SOURCE_DIR}/compile.sh
+        )
