@@ -46,9 +46,3 @@ add_executable(${BIN_NAME} ${SOURCES} ${HEADER})
 # Link dependencies
 target_link_libraries(${BIN_NAME} glfw)
 target_link_libraries(${BIN_NAME} vulkan)
-
-# build shaders
-add_custom_command(TARGET ${BIN_NAME}
-        PRE_BUILD
-        COMMAND /bin/sh ${PROJECT_SOURCE_DIR}/compile.sh
-        )

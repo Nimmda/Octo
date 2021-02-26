@@ -20,6 +20,12 @@ namespace octo
         void createPipeline();
         void createCommandBuffers();
         void drawFrame();
+        void sierpinski(
+            std::vector<OctoModel::Vertex> &vertices,
+            int depth,
+            glm::vec2 left,
+            glm::vec2 right,
+            glm::vec2 top);
 
         OctoWindow octoWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
         OctoDevice octoDevice{octoWindow};

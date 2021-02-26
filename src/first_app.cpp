@@ -31,9 +31,12 @@ namespace octo
     void FirstApp::loadModels()
     {
         std::vector<OctoModel::Vertex> vertices{
-            {{0.0f, -0.5f}},
-            {{0.5f, 0.5f}},
-            {{-0.5f, 0.5f}}};
+            {{0.0f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+            {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
+            {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
+
+        };
+
         octoModel = std::make_unique<OctoModel>(octoDevice, vertices);
     }
 
@@ -59,8 +62,8 @@ namespace octo
         pipelineConfig.pipelineLayout = pipelineLayout;
         octoPipeline = std::make_unique<OctoPipeline>(
             octoDevice,
-            "shaders/simple_shader.vert.spv",
-            "shaders/simple_shader.frag.spv",
+            "../shaders/simple_shader.vert.spv",
+            "../shaders/simple_shader.frag.spv",
             pipelineConfig);
     }
 
