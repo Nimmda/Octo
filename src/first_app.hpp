@@ -4,6 +4,7 @@
 #include "octo_pipeline.hpp"
 #include "octo_device.hpp"
 #include "octo_swap_chain.hpp"
+#include "octo_model.hpp"
 
 //std
 #include <memory>
@@ -14,6 +15,7 @@ namespace octo
     class FirstApp
     {
     private:
+        void loadModels();
         void createPipelineLayout();
         void createPipeline();
         void createCommandBuffers();
@@ -25,6 +27,7 @@ namespace octo
         std::unique_ptr<OctoPipeline> octoPipeline;
         VkPipelineLayout pipelineLayout;
         std::vector<VkCommandBuffer> commandBuffer;
+        std::unique_ptr<OctoModel> octoModel;
 
     public:
         static constexpr int WIDTH = 800;

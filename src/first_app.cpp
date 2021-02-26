@@ -7,6 +7,7 @@ namespace octo
 {
     FirstApp::FirstApp()
     {
+        loadModels();
         createPipelineLayout();
         createPipeline();
         createCommandBuffers();
@@ -25,6 +26,15 @@ namespace octo
             drawFrame();
         }
         vkDeviceWaitIdle(octoDevice.device());
+    }
+
+    void FirstApp::loadModels()
+    {
+        std::vector<OctoModel::Vertex> vertices{
+            {{0.0f, -0.5f}},
+            {{0.5f, 0.5f}},
+            {{-0.5f, 0.5f}}};
+        octoModel = std::make_unique<OctoModel>(octoDevice, vertices);
     }
 
     void FirstApp::createPipelineLayout()
@@ -96,7 +106,8 @@ namespace octo
             vkCmdBeginRenderPass(commandBuffer[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
             octoPipeline->bind(commandBuffer[i]);
-            vkCmdDraw(commandBuffer[i], 3, 1, 0, 0);
+            octoModel->bind(commandBuffer[i]);
+            octoModel->draw(commandBuffer[i]);
 
             vkCmdEndRenderPass(commandBuffer[i]);
 

@@ -4,3 +4,6 @@
 # cmake build folder
 build/
 cmake-build-debug/
+
+# compiled shaders
+shaders/*.spv

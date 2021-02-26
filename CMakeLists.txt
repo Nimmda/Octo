@@ -49,6 +49,6 @@ target_link_libraries(${BIN_NAME} vulkan)
 
 # build shaders
 add_custom_command(TARGET ${BIN_NAME}
-        POST_BUILD
+        PRE_BUILD
         COMMAND /bin/sh ${PROJECT_SOURCE_DIR}/compile.sh
         )
